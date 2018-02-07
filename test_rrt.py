@@ -23,10 +23,10 @@ wall_space = WallSpace(DIMS,
                        ])
 
 """Test the basic RRT algorithm on a space"""
-def test_basic(space):
+def test_basic(space, start_pt = np.array([50, 50])):
     pg.init()
     d = pg.display.set_mode(space.dimensions)
-    rrt = RRT(space, np.array([50, 50]), 50)
+    rrt = RRT(space, start_pt, 50)
     draw_space(d, space)
     pg.draw.circle(d, pg.Color('blue'),
                    intify(space.invert(rrt.tree.head.point)),
@@ -36,12 +36,13 @@ def test_basic(space):
     clk = pg.time.Clock()
     for _ in xrange(STEPS):
         new_node = rrt.step()
-        parent_node = new_node.parent
-        pg.draw.line(d, pg.Color('lightgrey'),
-                     intify(space.invert(parent_node.point)),
-                     intify(space.invert(new_node.point)))
-        pg.draw.circle(d, pg.Color('darkgrey'),
-                       intify(space.invert(new_node.point)), 3)
+        if new_node:
+            parent_node = new_node.parent
+            pg.draw.line(d, pg.Color('lightgrey'),
+                         intify(space.invert(parent_node.point)),
+                         intify(space.invert(new_node.point)))
+            pg.draw.circle(d, pg.Color('darkgrey'),
+                           intify(space.invert(new_node.point)), 3)
 
         pg.display.set_caption("FPS: " + str(int(clk.get_fps())))
         pg.event.pump()
@@ -60,10 +61,10 @@ def test_basic(space):
                 running = False
 
 """Test RRTstar on a space"""
-def test_star(space):
+def test_star(space, start_pt = np.array([50, 50])):
     pg.init()
     d = pg.display.set_mode(space.dimensions)
-    rrt = RRTstar(space, np.array([50, 50]), 200, 50)
+    rrt = RRTstar(space, start_pt, 100, 50)
     draw_space(d, space)
     draw_tree(d, rrt.tree, space)
     pg.event.pump()
