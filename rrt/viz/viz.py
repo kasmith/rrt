@@ -7,7 +7,7 @@ import pygame as pg
 
 
 def intify(vect):
-    return map(int, vect)
+    return list(map(int, vect))
 
 
 """Helper functions to draw the space and tree"""

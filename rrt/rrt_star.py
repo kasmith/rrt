@@ -5,8 +5,8 @@ the nodes
 """
 
 from __future__ import division, print_function
-from tree import *
-from rrt_base import RRT
+from .tree import *
+from .rrt_base import RRT
 import numpy as np
 
 __all__ = ['RRTstar']

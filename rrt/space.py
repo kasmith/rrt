@@ -6,10 +6,10 @@ Two types: EmptySpace (which is a empty, rectangular table), and WallSpace
 """
 
 from __future__ import division, print_function
-from goals import *
+from .goals import *
 import numpy as np
 from geometry import find_intersection_point, lines_intersect
-from helpers import point_in_box
+from .helpers import point_in_box
 
 class EmptySpace(object):
     """The most basic space with no obstacles"""

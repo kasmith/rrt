@@ -199,7 +199,7 @@ class DirectedTree(object):
             A list of Nodes within radius of newpt
         """
         frees = self.free_nodes
-        dists = map(lambda n: n.distance(newpt) <= radius, frees)
+        dists = list(map(lambda n: n.distance(newpt) <= radius, frees))
         rets = []
         for i in range(len(dists)):
             if dists[i]:

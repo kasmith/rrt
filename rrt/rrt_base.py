@@ -6,8 +6,8 @@ important methods that are used for RRT planning
 """
 
 from __future__ import division, print_function
-from tree import *
-from space import EmptySpace
+from .tree import *
+from .space import EmptySpace
 import numpy as np
 
 __all__ = ["RRT"]
