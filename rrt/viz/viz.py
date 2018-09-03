@@ -64,6 +64,27 @@ def draw_rrt(surface, rrt, goal_color=pg.Color('green'),
         pg.draw.lines(surface, start_color, False, pt_path, 2)
 
 
+def animate_rrt(surface, rrt, steps=1000, goal_color=pg.Color('green'),
+             wall_color=pg.Color('black'), node_color=pg.Color('darkgrey'),
+             path_color=pg.Color('lightgrey'), start_color=pg.Color('blue')):
+    draw_space(surface, rrt.space, goal_color, wall_color)
+    draw_tree(surface, rrt.tree, rrt.space,
+              node_color, path_color, start_color)
+    pg.display.flip()
+    for _ in range(steps):
+        pg.event.pump()
+        rrt.step()
+        draw_space(surface, rrt.space, goal_color, wall_color)
+        draw_tree(surface, rrt.tree, rrt.space,
+                  node_color, path_color, start_color)
+        _, shortest = rrt.get_shortest_path()
+        if shortest is not None:
+            pt_path = [intify(rrt.space.invert(p)) for p in shortest]
+            pg.draw.lines(surface, start_color, False, pt_path, 2)
+        pg.display.flip()
+    pause_pg()
+
+
 def pause_pg():
     while True:
         for e in pg.event.get():

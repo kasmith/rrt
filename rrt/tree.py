@@ -185,7 +185,7 @@ class DirectedTree(object):
             A Node from the tree closest to that point
         """
         frees = self.free_nodes
-        dists = np.array(map(lambda n: n.distance(newpt), frees))
+        dists = np.array(list(map(lambda n: n.distance(newpt), frees)))
         return frees[np.argmin(dists)]
 
     def near(self, newpt, radius):

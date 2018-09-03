@@ -91,7 +91,7 @@ class RRT(object):
         return node_path
 
     def get_shortest_path(self):
-        """Returns the shortest path found so framework
+        """Returns the shortest path found so far
 
         Returns:
             Two items:
