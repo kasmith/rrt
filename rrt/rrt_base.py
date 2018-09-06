@@ -110,6 +110,10 @@ class RRT(object):
         # Return cost, path
         return end_node.cost, [p.point for p in self._tree.path_down(end_node)]
 
+    def found_path(self):
+        """Returns True if a path to the goal has been found, False otherwise"""
+        return len(self._tree.goal_noes) > 0
+
     def _expose_tree(self):
         return self._tree
     tree = property(_expose_tree)
