@@ -112,7 +112,7 @@ class RRT(object):
 
     def found_path(self):
         """Returns True if a path to the goal has been found, False otherwise"""
-        return len(self._tree.goal_noes) > 0
+        return len(self._tree.goal_nodes) > 0
 
     def _expose_tree(self):
         return self._tree
